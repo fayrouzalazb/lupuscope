@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b45">
+<title>Lupuscope | Childhood Lupus Research</title>
+
+<style>
+:root {
+  --navy:#123b45;
+  --teal:#237b78;
+  --mint:#dff2e9;
+  --paper:#f6f8f5;
+  --white:#fff;
+  --ink:#20343a;
+  --muted:#63777b;
+  --line:#dce7e3;
+  --gold:#e5bd71;
+  --red:#a23d45;
+  --shadow:0 8px 25px #163d4510;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:15px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+button,input,select,textarea { font:inherit; }
+button { cursor:pointer; }
+a { color:var(--teal); overflow-wrap:anywhere; }
+
+.topbar {
+  background:var(--navy);
+  color:white;
+  padding:14px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-size:21px;
+  font-weight:800;
+}
+
+.logo {
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:var(--mint);
+  color:var(--navy);
+}
+
+.brand small {
+  display:block;
+  font-size:11px;
+  color:#c3ded7;
+  font-weight:500;
+}
+
+.top-actions,.row {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+select,input,textarea {
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 12px;
+  background:white;
+  color:var(--ink);
+  max-width:100%;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:245px minmax(0,1fr);
+  min-height:calc(100vh - 70px);
+}
+
+.sidebar {
+  padding:18px 14px;
+  border-right:1px solid var(--line);
+  background:white;
+}
+
+.nav-title {
+  font-size:11px;
+  letter-spacing:1.2px;
+  color:var(--muted);
+  padding:12px;
+  font-weight:800;
+}
+
+.navbtn {
+  display:block;
+  width:100%;
+  text-align:left;
+  padding:10px 12px;
+  border:0;
+  border-radius:10px;
+  background:transparent;
+  color:var(--ink);
+  margin:3px 0;
+}
+
+.navbtn:hover,.navbtn.active {
+  background:var(--mint);
+  color:var(--navy);
+  font-weight:750;
+}
+
+.main {
+  padding:28px;
+  max-width:1450px;
+  width:100%;
+  margin:auto;
+}
+
+.page.hidden,.hidden { display:none !important; }
+
+.hero {
+  background:linear-gradient(120deg,#123b45,#237b78);
+  color:white;
+  padding:32px;
+  border-radius:22px;
+}
+
+.hero h1 {
+  font-size:clamp(28px,4vw,44px);
+  line-height:1.2;
+  margin:12px 0;
+}
+
+.hero p { color:#e1f0eb; max-width:760px; }
+
+.eyebrow {
+  font-size:11px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  font-weight:800;
+}
+
+.pill,.badge {
+  display:inline-block;
+  padding:4px 9px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.pill {
+  background:#fff2d6;
+  color:#79520c;
+}
+
+.badge {
+  background:var(--mint);
+  color:var(--navy);
+}
+
+.section { margin-top:26px; }
+
+.sectionhead {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+}
+
+h1,h2,h3 { line-height:1.3; }
+h2 { font-size:22px; margin:0 0 7px; }
+h3 { font-size:17px; margin:0 0 8px; }
+p { margin:7px 0 12px; }
+.muted { color:var(--muted); }
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+.card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:19px;
+  box-shadow:var(--shadow);
+  min-width:0;
+}
+
+.stat {
+  font-size:28px;
+  font-weight:850;
+  color:var(--teal);
+}
+
+.btn {
+  border:0;
+  border-radius:10px;
+  background:var(--teal);
+  color:white;
+  padding:10px 15px;
+  font-weight:750;
+}
+
+.btn.secondary {
+  background:var(--mint);
+  color:var(--navy);
+}
+
+.btn.ghost {
+  background:white;
+  color:var(--navy);
+  border:1px solid var(--line);
+}
+
+.btn.danger { background:var(--red); }
+.btn.small { padding:7px 10px; font-size:12px; }
+
+.stack { display:grid; gap:12px; }
+
+.warning,.notice {
+  padding:13px 15px;
+  border-left:4px solid var(--gold);
+  background:#fff8e8;
+  border-radius:8px;
+  margin:12px 0;
+}
+
+.note { font-size:12px; color:var(--muted); }
+
+.field {
+  display:grid;
+  gap:5px;
+  margin:10px 0;
+}
+
+.field label {
+  font-weight:700;
+  font-size:13px;
+}
+
+.field input,.field select,.field textarea { width:100%; }
+textarea { min-height:100px; resize:vertical; }
+.list { padding-left:20px; }
+.article { border-bottom:1px solid var(--line); padding:15px 0; }
+.article:last-child { border:0; }
+
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th,td {
+  text-align:left;
+  padding:12px;
+  border-bottom:1px solid var(--line);
+}
+th { background:var(--mint); }
+
+footer {
+  padding:28px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+[dir="rtl"] body { text-align:right; }
+[dir="rtl"] .navbtn { text-align:right; }
+[dir="rtl"] .list { padding-left:0; padding-right:20px; }
+[dir="rtl"] .warning,
+[dir="rtl"] .notice {
+  border-left:0;
+  border-right:4px solid var(--gold);
+}
+[dir="rtl"] th,[dir="rtl"] td { text-align:right; }
+
+@media(max-width:900px) {
+  .layout { grid-template-columns:1fr; }
+  .sidebar {
+    display:flex;
+    overflow-x:auto;
+    gap:5px;
+    padding:10px;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-title { display:none; }
+  .navbtn { white-space:nowrap; width:auto; }
+  .main { padding:16px; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media(max-width:560px) {
+  .grid,.grid.two { grid-template-columns:1fr; }
+  .hero { padding:23px; }
+  .main { padding:12px; }
+  .topbar { padding:12px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">L</div>
+    <div>
+      Lupuscope
+      <small>Evidence • Patterns • Research gaps</small>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <label for="language" style="color:white">Language</label>
+    <select id="language" aria-label="Language">
+      <option value="en">English</option>
+      <option value="ar">العربية</option>
+    </select>
+    <button class="btn secondary" onclick="openLogin()" data-t="signin">
+      Demo sign in
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+  <div class="nav-title">RESEARCH</div>
+  <button class="navbtn active" data-page="home">⌂ Overview</button>
+  <button class="navbtn" data-page="evidence">▤ Evidence Library</button>
+  <button class="navbtn" data-page="patterns">⌁ Pattern Explorer</button>
+  <button class="navbtn" data-page="gaps">◫ Research Gap Map</button>
+  <button class="navbtn" data-page="pathways">◎ Biology & Pathways</button>
+
+  <div class="nav-title">EDUCATION & SUPPORT</div>
+  <button class="navbtn" data-page="parents">♡ Parents' Guide</button>
+  <button class="navbtn" data-page="doctors">✚ Find Care</button>
+  <button class="navbtn" data-page="forum">☷ Family Forum</button>
+
+  <div class="nav-title">WORKSPACE</div>
+  <button class="navbtn" data-page="account">♙ My Role</button>
+  <button class="navbtn hidden" id="adminNav" data-page="admin">
+    ⚙ Administration
+  </button>
+</aside>
+
+<main class="main">
+
+<!-- HOME -->
+<section class="page" id="page-home">
+  <div class="hero">
+    <span class="pill">RESEARCH PROTOTYPE · NOT A MEDICAL DEVICE</span>
+    <div class="eyebrow">Childhood-onset systemic lupus erythematosus</div>
+    <h1 data-t="heroTitle">
+      Turning published evidence into clearer research questions.
+    </h1>
+    <p data-t="heroText">
+      A research workspace to organize published studies, compare reported
+      findings, and highlight evidence gaps related to childhood-onset lupus.
+    </p>
+    <div class="row">
+      <button class="btn" onclick="showPage('evidence')">Explore Evidence</button>
+      <button class="btn secondary" onclick="showPage('gaps')">Research Gaps</button>
+    </div>
+  </div>
+
+  <div class="warning">
+    <strong>Important:</strong> Lupuscope is an educational and research
+    prototype. It does not diagnose disease, predict individual outcomes,
+    recommend treatment, or replace a qualified clinician.
+  </div>
+
+  <div class="section">
+    <div class="sectionhead">
+      <div>
+        <h2>Research Workspace</h2>
+        <p class="muted">
+          The examples below describe the prototype, not completed research.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="eyebrow">01 / SOURCES</div>
+        <div class="stat" id="sourceCount">6</div>
+        <h3>Starting References</h3>
+        <p class="muted">Initial publications for further literature review.</p>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">02 / ANALYSIS</div>
+        <div class="stat">Demo</div>
+        <h3>Pattern Explorer</h3>
+        <p class="muted">Research categories only; no associations calculated.</p>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">03 / TRANSPARENCY</div>
+        <div class="stat">Traceable</div>
+        <h3>Evidence Sources</h3>
+        <p class="muted">Each future finding should link to its original study.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section grid two">
+    <div class="card">
+      <h2>Research Question</h2>
+      <p>
+        Can a structured computational synthesis of published childhood-onset
+        systemic lupus erythematosus studies identify reproducible associations
+        between clinical and laboratory manifestations and reported genetic
+        or immunological factors, while mapping gaps in the available evidence?
+      </p>
+      <button class="btn secondary" onclick="showPage('patterns')">
+        Explore the Framework
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Research Principles</h2>
+      <ul class="list">
+        <li>Every scientific claim should have a traceable source.</li>
+        <li>Association does not prove causation.</li>
+        <li>Missing data must not be invented.</li>
+        <li>Demonstration outputs are not discoveries.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section grid two">
+    <div class="card">
+      <h2>Parents' Guide</h2>
+      <p>General educational information for families and caregivers.</p>
+      <button class="btn secondary" onclick="showPage('parents')">
+        Open Guide
+      </button>
+    </div>
+    <div class="card">
+      <h2>Find Care</h2>
+      <p>Search external maps for hospitals and pediatric specialists.</p>
+      <button class="btn secondary" onclick="showPage('doctors')">
+        Find Care
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE LIBRARY -->
+<section class="page hidden" id="page-evidence">
+  <div class="sectionhead">
+    <div>
+      <h2>Evidence Library</h2>
+      <p class="muted">
+        Starting references. Open and review each publication before extracting data.
+      </p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="searchEvidence">Search References</label>
+    <input id="searchEvidence" placeholder="Search title, topic, or year..."
+           oninput="filterEvidence()">
+  </div>
+
+  <div id="evidenceList" class="card stack"></div>
+
+  <div class="warning">
+    <strong>Next step:</strong> Create a standardized extraction sheet recording
+    study design, population, sample size, variables, results, uncertainty,
+    limitations, and the original source.
+  </div>
+</section>
+
+<!-- PATTERN EXPLORER -->
+<section class="page hidden" id="page-patterns">
+  <div class="sectionhead">
+    <div>
+      <h2>Pattern Explorer</h2>
+      <p class="muted">A proposed framework for organizing research questions.</p>
+    </div>
+    <span class="badge">ILLUSTRATIVE ONLY</span>
+  </div>
+
+  <div class="warning">
+    The topics below are examples for planning research. They are not measured
+    correlations, patient results, or completed scientific findings.
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Clinical and Laboratory Variables</h3>
+      <ul class="list">
+        <li>Age at disease onset</li>
+        <li>Kidney involvement and urine findings</li>
+        <li>Blood-count abnormalities</li>
+        <li>Autoantibodies and complement measures</li>
+        <li>Reported genetic and immune factors</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Explore a Research Theme</h3>
+      <div class="field">
+        <label for="theme">Select a theme</label>
+        <select id="theme" onchange="updatePattern()">
+          <option value="renal">Kidney manifestations and urinary biomarkers</option>
+          <option value="blood">Blood counts and clinical manifestations</option>
+          <option value="immune">Immune markers and disease activity</option>
+          <option value="genetic">Genetic factors and early-onset disease</option>
+        </select>
+      </div>
+      <div id="patternOutput" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div class="section card">
+    <h3>Proposed Analysis Workflow</h3>
+    <div class="grid">
+      <div>
+        <span class="badge">STEP 1</span>
+        <h3>Search</h3>
+        <p>Document the databases, search terms, dates, and criteria.</p>
+      </div>
+      <div>
+        <span class="badge">STEP 2</span>
+        <h3>Extract</h3>
+        <p>Record findings in a standardized format linked to each study.</p>
+      </div>
+      <div>
+        <span class="badge">STEP 3</span>
+        <h3>Compare</h3>
+        <p>Assess consistency only when the evidence is comparable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH GAPS -->
+<section class="page hidden" id="page-gaps">
+  <div class="sectionhead">
+    <div>
+      <h2>Research Gap Map</h2>
+      <p class="muted">Potential questions to verify during the literature review.</p>
+    </div>
+    <span class="badge">NOT A COMPLETED REVIEW</span>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Candidate Research Gaps</h3>
+
+      <div class="article">
+        <strong>Independent Validation</strong>
+        <p class="muted">
+          Do reported findings replicate in independent populations?
+        </p>
+        <span class="badge">To Verify</span>
+      </div>
+
+      <div class="article">
+        <strong>Comparable Variables</strong>
+        <p class="muted">
+          Do studies define and measure markers in comparable ways?
+        </p>
+        <span class="badge">To Verify</span>
+      </div>
+
+      <div class="article">
+        <strong>Early Disease Course</strong>
+        <p class="muted">
+          Which studies examine findings near the first presentation?
+        </p>
+        <span class="badge">To Verify</span>
+      </div>
+
+      <div class="article">
+        <strong>Population Representation</strong>
+        <p class="muted">
+          Which geographic populations or healthcare settings are less represented?
+        </p>
+        <span class="badge">To Verify</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>How to Validate a Gap</h3>
+      <ol class="list">
+        <li>Define the proposed gap precisely.</li>
+        <li>Search relevant scientific databases.</li>
+        <li>Screen titles, abstracts, and full texts.</li>
+        <li>Record studies that contradict the proposed gap.</li>
+        <li>Report what your documented search actually found.</li>
+      </ol>
+      <p class="note">
+        A gap becomes a research result only after systematic screening and documentation.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BIOLOGY -->
+<section class="page hidden" id="page-pathways">
+  <div class="sectionhead">
+    <div>
+      <h2>Biology & Pathways</h2>
+      <p class="muted">
+        Background concepts to guide reading, not a pathway analysis generated by this prototype.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Immune Dysregulation</h3>
+      <p>
+        Systemic lupus erythematosus is an autoimmune disease involving
+        loss of immune tolerance and autoantibody production. Genetic
+        and environmental influences may contribute.
+      </p>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5996073/"
+         target="_blank" rel="noopener">Read the scientific review ↗</a>
+    </div>
+
+    <div class="card">
+      <h3>Kidney Involvement</h3>
+      <p>
+        Lupus nephritis is an important organ manifestation. Researchers
+        have investigated urinary biomarkers, but candidate markers
+        require appropriate validation.
+      </p>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4980820/"
+         target="_blank" rel="noopener">Read the biomarker review ↗</a>
+    </div>
+
+    <div class="card">
+      <h3>Clinical Interpretation</h3>
+      <p>
+        Symptoms and laboratory results must be interpreted in context.
+        A single symptom or test cannot establish a diagnosis on its own.
+      </p>
+      <a href="https://www.niams.nih.gov/health-topics/lupus/diagnosis-treatment-and-steps-to-take"
+         target="_blank" rel="noopener">NIAMS: Lupus information ↗</a>
+    </div>
+
+    <div class="card">
+      <h3>Building a Pathway View</h3>
+      <p>
+        In a future version, each displayed biological relationship
+        should be linked to a source and labeled with its evidence type
+        and limitations.
+      </p>
+      <span class="badge">Future Development</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARENTS' GUIDE -->
+<section class="page hidden" id="page-parents">
+  <div class="sectionhead">
+    <div>
+      <h2>Parents' Guide</h2>
+      <p class="muted">
+        General education to help families prepare questions for healthcare professionals.
+      </p>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="card">
+      <h3>What Is Childhood Lupus?</h3>
+      <p>
+        Childhood-onset systemic lupus erythematosus (cSLE) is an
+        autoimmune disease that can affect different parts of the body.
+        Its manifestations and severity vary from person to person.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Understanding Changes in Symptoms</h3>
+      <p>
+        Symptoms such as fatigue, joint complaints, skin changes, or
+        fever can have different causes. Families should discuss
+        concerning changes with the child's healthcare team rather
+        than trying to diagnose a flare themselves.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Preparing for an Appointment</h3>
+      <ul class="list">
+        <li>Write down questions before the appointment.</li>
+        <li>Keep a record of symptoms to discuss with the care team.</li>
+        <li>Follow the care team's instructions for appointments and tests.</li>
+        <li>Do not change or stop prescribed medication without medical advice.</li>
+        <li>Ask the care team which changes need urgent attention.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Educational Disclaimer</h3>
+      <p>
+        This guide is general information. It does not provide individual
+        diagnosis or treatment advice and does not replace a qualified clinician.
+      </p>
+      <a href="https://www.niams.nih.gov/health-topics/lupus/diagnosis-treatment-and-steps-to-take"
+         target="_blank" rel="noopener">Read official health information ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FIND CARE -->
+<section class="page hidden" id="page-doctors">
+  <div class="sectionhead">
+    <div>
+      <h2>Find Medical Care</h2>
+      <p class="muted">
+        Search an external map by location. Results are not verified by Lupuscope.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Search by City or Area</h3>
+
+      <div class="field">
+        <label for="careLocation">City or area</label>
+        <input id="careLocation" placeholder="e.g. Cairo, Egypt">
+      </div>
+
+      <div class="field">
+        <label for="careType">What are you looking for?</label>
+        <select id="careType">
+          <option value="hospitals">Hospitals</option>
+          <option value="pediatric rheumatologist">Pediatric rheumatologists</option>
+          <option value="pediatric nephrologist">Pediatric nephrologists</option>
+          <option value="pediatric clinics">Pediatric clinics</option>
+        </select>
+      </div>
+
+      <button class="btn" onclick="searchCare()">Search Google Maps</button>
+    </div>
+
+    <div class="card">
+      <h3>Important Notes</h3>
+      <ul class="list">
+        <li>This website does not maintain a verified provider directory.</li>
+        <li>Map results are external search results, not endorsements.</li>
+        <li>Confirm qualifications, specialty, availability, and contact details directly.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILY FORUM -->
+<section class="page hidden" id="page-forum">
+  <div class="sectionhead">
+    <div>
+      <h2>Family Forum</h2>
+      <p class="muted">A local demonstration space for general educational questions.</p>
+    </div>
+    <span class="badge">LOCAL DEMO</span>
+  </div>
+
+  <div class="warning">
+    Posts are stored only in this browser on this device. They are not sent
+    to a server or moderated. Do not post names, addresses, medical records,
+    photographs, or identifying information about children.
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Share a General Question</h3>
+
+      <div class="field">
+        <label for="postTopic">Topic</label>
+        <select id="postTopic">
+          <option>General support</option>
+          <option>Understanding research</option>
+          <option>School and daily life</option>
+          <option>Questions for a clinician</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="postText">Your post</label>
+        <textarea id="postText" maxlength="600"
+          placeholder="Write a general, respectful question. Do not include personal medical details."></textarea>
+      </div>
+
+      <button class="btn" onclick="addPost()">Publish Locally</button>
+    </div>
+
+    <div class="card">
+      <h3>Community Guidelines</h3>
+      <ul class="list">
+        <li>Be kind and respectful.</li>
+        <li>Do not recommend changing medication or treatment.</li>
+        <li>Share research sources rather than unsupported claims.</li>
+        <li>Discuss personal medical concerns with a qualified clinician.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sectionhead">
+      <h3>Recent Local Demo Posts</h3>
+      <button class="btn ghost small" onclick="clearPosts()">Clear Posts</button>
+    </div>
+    <div id="posts" class="stack"></div>
+  </div>
+</section>
+
+<!-- ACCOUNT / ROLES -->
+<section class="page hidden" id="page-account">
+  <div class="sectionhead">
+    <div>
+      <h2>Workspace Access</h2>
+      <p class="muted">Switch between demonstration roles.</p>
+    </div>
+  </div>
+
+  <div class="warning">
+    This is a front-end simulation, not authentication. It does not protect
+    private information or secure administrator functions.
+  </div>
+
+  <div class="grid two">
+    <div class="card">
+      <h3>Choose a Demo Role</h3>
+
+      <div class="field">
+        <label for="roleSelect">Role</label>
+        <select id="roleSelect">
+          <option value="user">General user / family</option>
+          <option value="doctor">Clinician (demo)</option>
+          <option value="researcher">Researcher</option>
+          <option value="admin">Administrator (demo)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="displayName">Display name (optional)</label>
+        <input id="displayName" placeholder="Your display name">
+      </div>
+
+      <button class="btn" onclick="applyRole()">Apply Demo Role</button>
+      <p id="roleStatus" class="muted">Current role: General user / family</p>
+    </div>
+
+    <div class="card">
+      <h3>Planned Role Capabilities</h3>
+      <p><strong>Family:</strong> general education and moderated support.</p>
+      <p><strong>Clinician:</strong> verified professional resources.</p>
+      <p><strong>Researcher:</strong> study extraction and evidence comparison.</p>
+      <p><strong>Administrator:</strong> moderation and source review.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADMINISTRATION -->
+<section class="page hidden" id="page-admin">
+  <div class="sectionhead">
+    <div>
+      <h2>Administration (Demo)</h2>
+      <p class="muted">A visual mock-up of possible future administrative tools.</p>
+    </div>
+    <span class="badge">NOT SECURE</span>
+  </div>
+
+  <div class="warning">
+    This page is not protected. Anyone using the browser can change front-end
+    code or role state. A real administrator area requires server-enforced
+    authentication and authorization.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Evidence Review</h3>
+      <p>Future feature: review citations and track extraction quality.</p>
+      <span class="badge">Not Connected</span>
+    </div>
+
+    <div class="card">
+      <h3>Community Moderation</h3>
+      <p>Future feature: review reports and manage moderation.</p>
+      <span class="badge">Not Connected</span>
+    </div>
+
+    <div class="card">
+      <h3>Account Permissions</h3>
+      <p>Future feature: secure roles and audited permission changes.</p>
+      <span class="badge">Not Connected</span>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <strong>Lupuscope</strong>
+  <p>From Evidence to Insight — من الأدلة إلى الفهم</p>
+  <p>
+    Computational research prototype · Educational use only ·
+    No diagnosis or treatment advice
+  </p>
+</footer>
+
+<!-- DEMO SIGN-IN MODAL -->
+<div id="loginModal" class="hidden"
+     role="dialog" aria-modal="true" aria-labelledby="loginTitle"
+     style="position:fixed;inset:0;background:#102f36aa;place-items:center;padding:18px;z-index:10">
+
+  <div class="card" style="width:min(440px,100%)">
+    <div class="sectionhead">
+      <h2 id="loginTitle">Prototype Sign-in</h2>
+      <button class="btn ghost small" onclick="closeLogin()">Close</button>
+    </div>
+
+    <p class="muted">This demo does not create or verify accounts.</p>
+
+    <div class="field">
+      <label for="loginEmail">Email (demo only)</label>
+      <input id="loginEmail" type="email" placeholder="name@example.org">
+    </div>
+
+    <div class="field">
+      <label for="loginRole">Demo role</label>
+      <select id="loginRole">
+        <option value="user">General user / family</option>
+        <option value="doctor">Clinician</option>
+        <option value="researcher">Researcher</option>
+        <option value="admin">Administrator demo</option>
+      </select>
+    </div>
+
+    <button class="btn" onclick="demoSignIn()">Continue in Demo Mode</button>
+  </div>
+</div>
+
+<script>
+// -------------------- RESEARCH REFERENCES --------------------
+
+const refs = [
+  {
+    title:"Biomarkers for Childhood-Onset Systemic Lupus Erythematosus",
+    year:"2015",
+    topic:"Biomarkers; urine; immune factors",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4980820/",
+    note:"Review of candidate biomarkers and limitations in childhood-onset SLE."
+  },
+  {
+    title:"Differences in clinical features observed between childhood-onset versus adult-onset systemic lupus erythematosus: A systematic review and meta-analysis",
+    year:"2017",
+    topic:"Clinical manifestations; meta-analysis",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5604682/",
+    note:"Compares reported clinical features in childhood- and adult-onset SLE."
+  },
+  {
+    title:"Childhood-Onset Systemic Lupus Erythematosus: An International Perspective",
+    year:"2024",
+    topic:"Global research gaps; healthcare",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11377481/",
+    note:"Discusses international challenges in childhood-onset SLE research and care."
+  },
+  {
+    title:"Systemic Lupus Erythematosus: Diagnosis, Treatment, and Steps to Take",
+    year:"NIAMS",
+    topic:"Diagnosis; clinical context",
+    url:"https://www.niams.nih.gov/health-topics/lupus/diagnosis-treatment-and-steps-to-take",
+    note:"Official health information explaining diagnosis and treatment context."
+  },
+  {
+    title:"Revisiting Childhood-Onset Systemic Lupus Erythematosus",
+    year:"2024",
+    topic:"Clinical and laboratory manifestations",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11332533/",
+    note:"Review of current understanding of childhood-onset lupus."
+  },
+  {
+    title:"Insights Gained From the Study of Pediatric Systemic Lupus Erythematosus",
+    year:"2018",
+    topic:"Genetics; pathophysiology",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5996073/",
+    note:"Review of insights into genetic and immune mechanisms."
+  }
+];
+
+// -------------------- TRANSLATIONS --------------------
+
+const translations = {
+  en: {
+    signin:"Demo sign in",
+    heroTitle:"Turning published evidence into clearer research questions.",
+    heroText:"A research workspace to organize published studies, compare reported findings, and highlight evidence gaps related to childhood-onset lupus."
+  },
+  ar: {
+    signin:"دخول تجريبي",
+    heroTitle:"نحوّل الأدلة المنشورة إلى أسئلة بحثية أوضح.",
+    heroText:"مساحة بحثية لتنظيم الدراسات المنشورة ومقارنة نتائجها وتحديد الفجوات في الأدلة المتعلقة بالذئبة الحمراء التي تبدأ في الطفولة."
+  }
+};
+
+// -------------------- NAVIGATION --------------------
+
+function showPage(name) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+
+  const target = document.getElementById("page-" + name);
+  if (target) target.classList.remove("hidden");
+
+  document.querySelectorAll(".navbtn").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === name);
+  });
+
+  if (name === "forum") renderPosts();
+  if (name === "evidence") filterEvidence();
+
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+document.querySelectorAll(".navbtn[data-page]").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+// -------------------- SAFE TEXT HANDLING --------------------
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[character]);
+}
+
+// -------------------- EVIDENCE LIBRARY --------------------
+
+function filterEvidence() {
+  const input = document.getElementById("searchEvidence");
+  const host = document.getElementById("evidenceList");
+
+  if (!input || !host) return;
+
+  const query = input.value.toLowerCase().trim();
+
+  const filtered = refs.filter(reference =>
+    (
+      reference.title + " " +
+      reference.topic + " " +
+      reference.note + " " +
+      reference.year
+    ).toLowerCase().includes(query)
+  );
+
+  host.innerHTML = filtered.map(reference => `
+    <div class="article">
+      <h3>${escapeHTML(reference.title)}</h3>
+      <div class="note">
+        ${escapeHTML(reference.year)} · ${escapeHTML(reference.topic)}
+      </div>
+      <p>${escapeHTML(reference.note)}</p>
+      <a href="${reference.url}" target="_blank" rel="noopener">
+        Open Original Source ↗
+      </a>
+    </div>
+  `).join("") || "<p>No matching references found.</p>";
+}
+
+// -------------------- PATTERN EXPLORER --------------------
+
+function updatePattern() {
+  const select = document.getElementById("theme");
+  const output = document.getElementById("patternOutput");
+
+  if (!select || !output) return;
+
+  const data = {
+    renal: [
+      "Kidney manifestations and urinary biomarkers",
+      "Compare marker definitions, measurement timing, outcomes, and independent validation across studies."
+    ],
+    blood: [
+      "Blood counts and clinical manifestations",
+      "Extract reported hematologic features and record how each study defined them."
+    ],
+    immune: [
+      "Immunological markers and disease activity",
+      "Distinguish claims about diagnosis, disease activity, and outcome prediction."
+    ],
+    genetic: [
+      "Genetic factors and early-onset disease",
+      "Record the gene or variant, population, study design, and whether results were replicated."
+    ]
+  };
+
+  const item = data[select.value];
+
+  output.innerHTML = `
+    <h3>${escapeHTML(item[0])}</h3>
+    <p>${escapeHTML(item[1])}</p>
+    <p class="note">
+      Status: research plan only. No association has been calculated here.
+    </p>
+  `;
+}
+
+// -------------------- FIND CARE --------------------
+
+function searchCare() {
+  const location = document.getElementById("careLocation").value.trim();
+  const type = document.getElementById("careType").value;
+
+  if (!location) {
+    alert("Please enter a city or area first.");
+    return;
+  }
+
+  const query = type + " " + location;
+  const url =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(query);
+
+  window.open(url, "_blank", "noopener");
+}
+
+// -------------------- DEMO ROLES --------------------
+
+function applyRole() {
+  const role = document.getElementById("roleSelect").value;
+  const name = document.getElementById("displayName").value.trim();
+
+  const labels = {
+    user:"General user / family",
+    doctor:"Clinician (demo)",
+    researcher:"Researcher",
+    admin:"Administrator (demo)"
+  };
+
+  document.getElementById("roleStatus").textContent =
+    "Current role: " + labels[role] +
+    (name ? " · " + name : "") +
+    " — demo only";
+
+  document.getElementById("adminNav")
+    .classList.toggle("hidden", role !== "admin");
+
+  alert(
+    "Demo role applied. This does not authenticate you or secure any data."
+  );
+}
+
+// -------------------- DEMO SIGN-IN --------------------
+
+function openLogin() {
+  const modal = document.getElementById("loginModal");
+  modal.classList.remove("hidden");
+  modal.style.display = "grid";
+}
+
+function closeLogin() {
+  const modal = document.getElementById("loginModal");
+  modal.classList.add("hidden");
+  modal.style.display = "";
+}
+
+function demoSignIn() {
+  const role = document.getElementById("loginRole").value;
+
+  document.getElementById("roleSelect").value = role;
+
+  closeLogin();
+  showPage("account");
+  applyRole();
+}
+
+// -------------------- LOCAL FAMILY FORUM --------------------
+
+function getPosts() {
+  try {
+    return JSON.parse(
+      localStorage.getItem("lupuscope_demo_posts") || "[]"
+    );
+  } catch (error) {
+    return [];
+  }
+}
+
+function addPost() {
+  const topic = document.getElementById("postTopic").value;
+  const body = document.getElementById("postText").value.trim();
+
+  if (!body) {
+    alert("Please write a general question first.");
+    return;
+  }
+
+  const posts = getPosts();
+
+  posts.unshift({
+    topic:topic,
+    body:body,
+    date:new Date().toLocaleString()
+  });
+
+  try {
+    localStorage.setItem(
+      "lupuscope_demo_posts",
+      JSON.stringify(posts.slice(0, 30))
+    );
+  } catch (error) {
+    alert("Unable to save this post in the browser.");
+    return;
+  }
+
+  document.getElementById("postText").value = "";
+  renderPosts();
+}
+
+function renderPosts() {
+  const host = document.getElementById("posts");
+  if (!host) return;
+
+  const posts = getPosts();
+
+  host.innerHTML = posts.length
+    ? posts.map(post => `
+        <div class="card">
+          <div class="row">
+            <span class="badge">${escapeHTML(post.topic)}</span>
+            <span class="note">${escapeHTML(post.date)}</span>
+          </div>
+          <p>${escapeHTML(post.body)}</p>
+          <p class="note">
+            Local demo post — not moderated or sent to a server.
+          </p>
+        </div>
+      `).join("")
+    : '<div class="card muted">No local demo posts yet.</div>';
+}
+
+function clearPosts() {
+  if (confirm("Delete all local demo posts from this browser?")) {
+    localStorage.removeItem("lupuscope_demo_posts");
+    renderPosts();
+  }
+}
+
+// -------------------- LANGUAGE SWITCH --------------------
+
+document.getElementById("language").addEventListener("change", event => {
+  const language = event.target.value;
+  const translation = translations[language];
+
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll("[data-t]").forEach(element => {
+    const key = element.dataset.t;
+
+    if (translation[key]) {
+      element.textContent = translation[key];
+    }
+  });
+
+  /*
+    Only the main hero text and sign-in button are translated here.
+    Other page content remains in English until full translations are added.
+  */
+});
+
+// -------------------- INITIALIZE WEBSITE --------------------
+
+document.getElementById("sourceCount").textContent = refs.length;
+
+filterEvidence();
+updatePattern();
+renderPosts();
+
+</script>
+</body>
+</html>
